@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rb1ux9llr/s=",
+  "dgSpecHash": "/OOYW3bFmdI=",
   "success": true,
-  "projectFilePath": "D:\\Itransition\\Task3Lcm\\Task3Lcm.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Itransition\\task3\\webproject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Shohruz\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.1\\microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
+    "C:\\Users\\Shohruz\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

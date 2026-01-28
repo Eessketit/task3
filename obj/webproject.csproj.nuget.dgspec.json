@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Itransition\\Task3Lcm\\Task3Lcm.csproj": {}
+    "D:\\Itransition\\task3\\webproject.csproj": {}
   },
   "projects": {
-    "D:\\Itransition\\Task3Lcm\\Task3Lcm.csproj": {
+    "D:\\Itransition\\task3\\webproject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Itransition\\Task3Lcm\\Task3Lcm.csproj",
-        "projectName": "Task3Lcm",
-        "projectPath": "D:\\Itransition\\Task3Lcm\\Task3Lcm.csproj",
+        "projectUniqueName": "D:\\Itransition\\task3\\webproject.csproj",
+        "projectName": "webproject",
+        "projectPath": "D:\\Itransition\\task3\\webproject.csproj",
         "packagesPath": "C:\\Users\\Shohruz\\.nuget\\packages\\",
-        "outputPath": "D:\\Itransition\\Task3Lcm\\obj\\",
+        "outputPath": "D:\\Itransition\\task3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Shohruz\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
