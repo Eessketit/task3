@@ -1,41 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace webproject.Controllers
+[ApiController]
+[Route("shohruzinha_gmail_com")]
+public class LcmController : ControllerBase
 {
-    [ApiController]
-    [Route("shohruzinha_gmail_com")]
-    public class SimpleController : ControllerBase
+    [HttpGet]
+    public IActionResult Get([FromQuery] string? x, [FromQuery] string? y)
     {
-        [HttpGet]
-        public IActionResult Get(
-            [FromQuery] string? x,
-            [FromQuery] string? y)
+        if (!long.TryParse(x, out var a) ||
+            !long.TryParse(y, out var b) ||
+            a <= 0 || b <= 0)
         {
-            if (!long.TryParse(x, out long a) ||
-                !long.TryParse(y, out long b) ||
-                a <= 0 || b <= 0)
-            {
-                return Content("NaN", "text/plain");
-            }
-
-            long lcm = LCM(a, b);
-            return Content(lcm.ToString(), "text/plain");
+            return Content("NaN", "text/plain");
         }
 
-        private long GCD(long a, long b)
-        {
-            while (b != 0)
-            {
-                long temp = b;
-                b = a % b;
-                a = temp;
-            }
-            return a;
-        }
+        long lcm = a / Gcd(a, b) * b;
+        return Content(lcm.ToString(), "text/plain");
+    }
 
-        private long LCM(long a, long b)
-        {
-            return a / GCD(a, b) * b;
-        }
+    private static long Gcd(long a, long b)
+    {
+        while (b != 0)
+            (a, b) = (b, a % b);
+        return a;
     }
 }
