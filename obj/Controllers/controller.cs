@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Numerics;
-using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace webproject.Controllers
 {
@@ -21,8 +21,13 @@ namespace webproject.Controllers
             return Plain(lcm.ToString());
         }
 
-        private static bool IsNatural(string? s) =>
-            s != null && Regex.IsMatch(s, "^[1-9][0-9]*$");
+        private static bool IsNatural(string? s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+
+            return s.All(char.IsDigit) && BigInteger.Parse(s) > 0;
+        }
 
         private static BigInteger GCD(BigInteger a, BigInteger b)
         {
@@ -35,7 +40,7 @@ namespace webproject.Controllers
             return a;
         }
 
-        private ContentResult Plain(string value) =>
+        private static ContentResult Plain(string value) =>
             new ContentResult
             {
                 Content = value,
