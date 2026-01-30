@@ -1,27 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
+using System.Text.RegularExpressions;
 
-[ApiController]
-[Route("shohruzinha_gmail_com")]
-public class LcmController : ControllerBase
+namespace webproject.Controllers
 {
-    [HttpGet]
-    public IActionResult Get([FromQuery] string? x, [FromQuery] string? y)
+    [ApiController]
+    [Route("shohruzinha_gmail_com")]
+    public class SimpleController : ControllerBase
     {
-        if (!long.TryParse(x, out var a) ||
-            !long.TryParse(y, out var b) ||
-            a <= 0 || b <= 0)
+        [HttpGet]
+        public IActionResult Get([FromQuery] string? x, [FromQuery] string? y)
         {
-            return Content("NaN", "text/plain");
+            if (!IsNatural(x) || !IsNatural(y))
+                return Plain("NaN");
+
+            BigInteger a = BigInteger.Parse(x!);
+            BigInteger b = BigInteger.Parse(y!);
+
+            BigInteger lcm = BigInteger.Abs(a * b) / GCD(a, b);
+            return Plain(lcm.ToString());
         }
 
-        long lcm = a / Gcd(a, b) * b;
-        return Content(lcm.ToString(), "text/plain");
-    }
+        private static bool IsNatural(string? s) =>
+            s != null && Regex.IsMatch(s, "^[1-9][0-9]*$");
 
-    private static long Gcd(long a, long b)
-    {
-        while (b != 0)
-            (a, b) = (b, a % b);
-        return a;
+        private static BigInteger GCD(BigInteger a, BigInteger b)
+        {
+            while (b != 0)
+            {
+                var t = b;
+                b = a % b;
+                a = t;
+            }
+            return a;
+        }
+
+        private ContentResult Plain(string value) =>
+            new ContentResult
+            {
+                Content = value,
+                ContentType = "text/plain",
+                StatusCode = 200
+            };
     }
 }
