@@ -1,0 +1,7 @@
+D:\Itransition\task3\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\Itransition\task3\obj\Debug\net8.0\webproject.GeneratedMSBuildEditorConfig.editorconfig
+D:\Itransition\task3\obj\Debug\net8.0\webproject.AssemblyInfoInputs.cache
+D:\Itransition\task3\obj\Debug\net8.0\webproject.AssemblyInfo.cs
+D:\Itransition\task3\obj\Debug\net8.0\webproject.csproj.CoreCompileInputs.cache
+D:\Itransition\task3\obj\Debug\net8.0\webproject.MvcApplicationPartsAssemblyInfo.cache
+D:\Itransition\task3\obj\Debug\net8.0\webproject.sourcelink.json

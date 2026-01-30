@@ -1,23 +1,45 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
+using System.Numerics;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.Limits.MaxRequestLineSize = 64 * 1024;
-    options.Limits.MaxRequestHeadersTotalSize = 64 * 1024;
-});
-
-builder.Services.AddControllers();
-
 var app = builder.Build();
 
-app.UseRouting();
-app.UseEndpoints(endpoints =>
+app.MapGet("/shohruzinha_gmail_com", (string? x, string? y) =>
 {
-    endpoints.MapControllers();
+    if (!IsNatural(x) || !IsNatural(y))
+        return Results.Text("NaN", "text/plain");
+
+    BigInteger bx = BigInteger.Parse(x!);
+    BigInteger by = BigInteger.Parse(y!);
+
+    BigInteger lcm = Lcm(bx, by);
+    return Results.Text(lcm.ToString(), "text/plain");
 });
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Run($"http://0.0.0.0:{port}");
+app.Run();
+
+static bool IsNatural(string? s)
+{
+    if (string.IsNullOrWhiteSpace(s))
+        return false;
+
+    if (!BigInteger.TryParse(s, out var n))
+        return false;
+
+    return n > 0;
+}
+
+static BigInteger Gcd(BigInteger a, BigInteger b)
+{
+    while (b != 0)
+    {
+        var t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+}
+
+static BigInteger Lcm(BigInteger a, BigInteger b)
+{
+    return (a / Gcd(a, b)) * b;
+}
